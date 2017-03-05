@@ -50,7 +50,37 @@ Part 1: Discussion
 # Parts 2 through 5:
 # Create your classes and class methods
 
+"""PART 2: Classes and Init Methods"""
 
+class Student(object):
+    """Stores student data: firstname, lastname, address.
+    """
+
+    def __init__(self, first_name, last_name, address):
+        self. first_name = first_name
+        self.last_name = last_name
+        self. address = address
+
+
+class Questions(object):
+    """Stores a question and a correct answer. 
+    """
+
+    def __init__(self, question, answer):
+        self.question = questions
+        self.answer = answer
+
+
+class Exam(object):
+    """Stores exam data (questions and answers). 
+    """
+
+    def __init__(self, name, questions):
+        self.name = name
+        self.questions = []
+
+
+"""PART 3: Methods"""
 
 
 
