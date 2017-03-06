@@ -47,11 +47,11 @@ Part 1: Discussion
 """
 
 
-# Parts 2 through 5:
-# Create your classes and class methods
+"""Parts 2 through 5:
+Create your classes and class methods"""
 
 """PART 2: Classes and Init Methods"""
-
+"""1."""
 class Student(object):
     """Stores student data: firstname, lastname, address.
     """
@@ -62,25 +62,104 @@ class Student(object):
         self. address = address
 
 
-class Questions(object):
-    """Stores a question and a correct answer. 
+"""2."""
+class Question(object):
+    """CAN store a question and a correct answer. 
     """
 
-    def __init__(self, question, answer):
-        self.question = questions
-        self.answer = answer
+    def __init__(self, question, correct_answer):
+        self.question = question
+        self.correct_answer = correct_answer
 
 
+"""3."""
+class Exam(object):
+    """Stores exam data (questions and answers). 
+#     """
+
+    def __init__(self, name):
+        self.name = name
+        self.questions = []
+        
+
+"""PART 3: Methods"""
+
+"""1."""
 class Exam(object):
     """Stores exam data (questions and answers). 
     """
 
-    def __init__(self, name, questions):
+    def __init__(self, name):
         self.name = name
         self.questions = []
 
 
-"""PART 3: Methods"""
+    def add_question(self, question, correct_answer):
+        """Adds question to exam."""
+        self.question = question
+        self.correct_answer = correct_answer
+        self.questions.extend([question, correct_answer])
+        
+
+"""2."""
+class Question(object):
+    """Stores a question and a correct answer. 
+    """
+
+    def __init__(self, question, correct_answer):
+        self.question = question
+        self.correct_answer = correct_answer
+
+    def ask_and_evaluate(self):
+        """Prints question, asks user for answer, and returns True/False."""
+        
+        user_answer = raw_input(self.question)
+        if user_answer == self.correct_answer:
+            return True
+        else:
+            return False 
+
+
+"""3."""
+
+class Exam(object):
+    """Stores exam data (questions and answers). 
+#     """
+    def __init__(self, name):
+        self.name = name
+        self.questions = []
+
+
+    def add_question(self, question, correct_answer):
+        """Adds question to exam."""
+        self.question = question
+        self.correct_answer = correct_answer
+        self.questions.extend([question, correct_answer])
+
+        print self.questions
+        
+    def administer(self):
+
+        base_value = len(self.questions)
+        score = 0
+        i = 0
+
+        questions = self.questions[0::2]  
+        print questions 
+
+        answers = self.questions[1::2]
+        print answers
+
+        while len(answers) > 0:
+            for question in questions:
+                user_answer = raw_input(question)
+                if user_answer == answers[i]:
+                    score += 1
+                    i += 1
+
+        return float(score / base_value)
+
+
 
 
 
