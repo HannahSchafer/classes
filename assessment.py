@@ -57,9 +57,9 @@ class Student(object):
     """
 
     def __init__(self, first_name, last_name, address):
-        self. first_name = first_name
+        self.first_name = first_name
         self.last_name = last_name
-        self. address = address
+        self.address = address
 
 
 """2."""
@@ -96,6 +96,7 @@ class Exam(object):
 
     def add_question(self, question, correct_answer):
         """Adds question to exam."""
+
         self.question = question
         self.correct_answer = correct_answer
         self.questions.extend([question, correct_answer])
@@ -139,23 +140,95 @@ class Exam(object):
         print self.questions
         
     def administer(self):
+        """Administers exam to user, returns score"""
 
+        # start score at 0
         score = 0
         i = 0
 
+        # make list of only the questions 
         questions = self.questions[0::2]  
         print questions 
 
+        # make list of only the answers
         answers = self.questions[1::2]
         print answers
 
+        # loop through questions, compare user's answers, and add to score
         for question in questions:
             user_answer = raw_input(question)
             if user_answer == answers[i]:
                 score += 1
             i += 1
 
+        # divide user score by number of questions, to get their percentage score
         return float(score / len(questions))
+
+
+"""PART 4"""
+"""1."""
+
+def take_test(Exam, Student):
+"""Administers exam, assigns score to student, and prints message.
+"""
+    student.score = exam.administer()
+    print "{}'s score is {}".format(student.first_name, student.score)
+
+
+"""2."""
+
+def example():
+    """creates and administers an exam to a student.
+    """
+
+    exam = Exam('exam')
+
+    # Adding in questions and answers
+    exam.add_question("What is the capital of Canada?", "Ottawa")
+    exam.add_question("What is the capital of Japan?", "Tokyo")
+    exam.add_question("What is the capital of South Korea?", "Seoul")
+    student = Student("Hannah", "Schafer", "450 Sutter Street")
+
+    # Calling take-test funciton on the exam and student instances here. 
+    take_test(exam, student)
+
+
+"""PART 5"""
+
+class Quiz(Exam):
+    """child class of Exam, Quiz only gives you a Pass/Fail, rather than
+    percentage score."""
+
+
+    def administer(self):
+            """Overrides the administer method from the parent class Exam.
+            Administers quiz to user, returns Pass/Fail"""
+
+            # start score at 0
+            score = 0
+            i = 0
+
+            # make list of only the questions 
+            questions = self.questions[0::2]  
+            print questions 
+
+            # make list of only the answers
+            answers = self.questions[1::2]
+            print answers
+
+            # loop through questions, compare user's answers, and add to score
+            for question in questions:
+                user_answer = raw_input(question)
+                if user_answer == answers[i]:
+                    score += 1
+                i += 1
+
+            # divide user score by number of questions, to get their percentage score
+            final_score = float(score / len(questions))
+            if final_score >= 0.5:
+                return "Passed"
+            else:
+                return "Failed"
 
 
 
