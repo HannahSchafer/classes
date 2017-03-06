@@ -140,7 +140,6 @@ class Exam(object):
         
     def administer(self):
 
-        base_value = len(self.questions)
         score = 0
         i = 0
 
@@ -150,14 +149,13 @@ class Exam(object):
         answers = self.questions[1::2]
         print answers
 
-        while len(answers) > 0:
-            for question in questions:
-                user_answer = raw_input(question)
-                if user_answer == answers[i]:
-                    score += 1
-                    i += 1
+        for question in questions:
+            user_answer = raw_input(question)
+            if user_answer == answers[i]:
+                score += 1
+            i += 1
 
-        return float(score / base_value)
+        return float(score / len(questions))
 
 
 
